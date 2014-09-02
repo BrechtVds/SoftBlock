@@ -3,7 +3,8 @@ function save_options() {
   var websites = document.getElementById('websites').value;
 
   chrome.storage.sync.set({
-    blockedWebsites: websites
+    blockedWebsites: websites,
+    unlockUntil: 0
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -11,13 +12,14 @@ function save_options() {
     setTimeout(function() {
       status.textContent = '';
     }, 750);
+
+    // Update listener
+    var bgPage = chrome.extension.getBackgroundPage();
+    bgPage.update();
   });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
 function restore_options() {
-  // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
     blockedWebsites: ''
   }, function(items) {
