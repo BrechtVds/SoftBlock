@@ -5,9 +5,9 @@ window.addEventListener('load', function() {
 	var index = url.lastIndexOf(parameter);
 	var url = url.substr(index + parameter.length);
 
-	var form = document.getElementById('unlock');
+	var btn = document.getElementById('unlock');
 
-	form.addEventListener('submit', function() {
+	btn.addEventListener('click', function() {
 		var time = document.getElementById('time');
 		var seconds = time.options[time.selectedIndex].value;
 
